@@ -7,10 +7,9 @@ const API_URL = "https://clasificadorcomentarios-production.up.railway.app/api";
 
 function Classify() {
   const [comments, setComments] = useState([]);
-  // Almacenamos la opción seleccionada (string) para cada comentario.
   const [classifications, setClassifications] = useState({});
-  // Estado para controlar si ya se envió la clasificación.
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // Nuevo estado para el throbber
   const username = localStorage.getItem("username");
 
   useEffect(() => {
@@ -20,12 +19,9 @@ function Classify() {
     axios
       .get(`${API_URL}/comments`)
       .then((response) => setComments(response.data))
-      .catch((error) =>
-        console.error("Error al obtener comentarios", error)
-      );
+      .catch((error) => console.error("Error al obtener comentarios", error));
   }, [username]);
 
-  // Maneja el cambio en el radio button: se almacena el valor seleccionado.
   const handleRadioChange = (commentId, value) => {
     setClassifications((prev) => ({
       ...prev,
@@ -41,6 +37,9 @@ function Classify() {
       return;
     }
 
+    // Mostrar el throbber y ocultar el botón
+    setLoading(true);
+
     try {
       const userResponse = await axios.post(`${API_URL}/users`, {
         nombre: username,
@@ -50,22 +49,24 @@ function Classify() {
       // Construir el payload para las clasificaciones.
       const payload = {
         userId,
-        clasificaciones: Object.entries(classifications).map(
-          ([commentId, value]) => ({
-            comentarioId: parseInt(commentId),
-            esPositivo: value === "esPositivo",
-            esNegativo: value === "esNegativo",
-            esNeutral: value === "esNeutral",
-          })
-        ),
+        clasificaciones: Object.entries(classifications).map(([commentId, value]) => ({
+          comentarioId: parseInt(commentId),
+          esPositivo: value === "esPositivo",
+          esNegativo: value === "esNegativo",
+          esNeutral: value === "esNeutral",
+        })),
       };
 
       await axios.post(`${API_URL}/classifications`, payload);
-      // En lugar de un alert, se marca que se ha enviado la clasificación.
-      setSubmitted(true);
+
+      // Esperar 2 segundos para simular carga antes de pasar al componente de Gracias
+      setTimeout(() => {
+        setSubmitted(true);
+      }, 3000);
     } catch (error) {
       console.error("Error al guardar la clasificación:", error);
       alert("Hubo un error al guardar la clasificación.");
+      setLoading(false); // Volver a mostrar el botón si hubo error
     }
   };
 
@@ -76,25 +77,21 @@ function Classify() {
 
   return (
     <div className="page-container">
-      {/* Sección Superior (Header) */}
       <header className="header-section">
         <h1>Hola, {username}</h1>
       </header>
 
-      {/* Sección Media (Instrucciones) */}
       <section className="instructions-section">
         <p>
           De acuerdo a tu criterio, selecciona el sentimiento que representa cada comentario.
         </p>
       </section>
 
-      {/* Sección Principal (Comentarios y opciones) */}
       <main className="comments-section">
         {comments.map((comment) => (
           <div key={comment.id} className="comment-row">
             <div className="comment-text">{comment.texto}</div>
             <div className="checkbox-group">
-              {/* Los radio buttons comparten el mismo name por comentario */}
               <label>
                 <input
                   type="radio"
@@ -130,11 +127,14 @@ function Classify() {
         ))}
       </main>
 
-      {/* Sección Inferior (Botón) */}
       <footer className="footer-section">
-        <button className="enviar" onClick={handleSubmit}>
-          Enviar Clasificación
-        </button>
+        {!loading ? (
+          <button className="enviar" onClick={handleSubmit}>
+            Enviar Clasificación
+          </button>
+        ) : (
+          <div className="loading-spinner"></div>
+        )}
       </footer>
     </div>
   );
