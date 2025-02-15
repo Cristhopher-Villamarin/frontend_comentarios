@@ -1,0 +1,121 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom, #1c5052 0%, #348e91 40%);
+    color: #2D2E2C;
+  }
+  
+  /* ===== CONTENEDOR PRINCIPAL DE LA PÁGINA ===== */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Pantalla completa */
+  }
+  
+  /* ===== SECCIÓN SUPERIOR ===== */
+  .header-section {
+    flex: 0 0 auto; /* No se expande */
+    background: #EED7C5 ;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(45, 46, 44, 0.2);
+  }
+  
+  .header-section h1 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+  
+  /* ===== SECCIÓN MEDIA (INSTRUCCIONES) ===== */
+  .instructions-section {
+    flex: 0 0 auto;
+    background: #EED7C5 ;
+    padding: 15px 30px;
+    text-align: center;
+  }
+  
+  .instructions-section p {
+    font-size: 20px;
+    color: #000000;
+  }
+  
+  /* ===== SECCIÓN PRINCIPAL (COMENTARIOS) ===== */
+  .comments-section {
+    flex: 1; /* Ocupará todo el espacio central */
+    padding: 20px 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: linear-gradient(to bottom, #EED7C5 0%, #348e91 40%, #1c5052 60%);
+  }
+  
+  /* Cada fila de comentario */
+  .comment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f1e9; /* Suave diferencia con el degradado */
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(45, 46, 44, 0.1);
+  }
+  
+  /* Texto del comentario a la izquierda */
+  .comment-text {
+    flex: 1;
+    margin-right: 15px;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+  /* Grupo de checkboxes a la derecha */
+  .checkbox-group {
+    display: flex;
+    gap: 19px;
+    font-size: 17px;
+  }
+
+  .checkbox-group input[type="radio"] {
+    accent-color: #000201; /* Cambia el color del radio, si lo deseas */
+    transform: scale(1.5); /* Aumenta el tamaño, ajusta el valor según lo que necesites */
+    margin-right: 5px;
+    cursor: pointer;
+    box-shadow: none;
+
+  }
+  
+  /* ===== SECCIÓN INFERIOR (BOTÓN) ===== */
+  .footer-section {
+    flex: 0 0 auto;
+    background:  #1c5052;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 -3px 6px rgba(45, 46, 44, 0.1);
+  }
+  
+  /* Botón de Enviar */
+  button {
+    background-color: #CCCCBB;
+    color: #2D2E2C;
+    border: 10px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 26px;
+    font-weight: bold;
+    border-color: white;
+  }
+  
+  button:hover {
+    background: linear-gradient(to right, #CCCCBB, #9EC4BB);
+    box-shadow: 0 4px 10px rgba(45, 46, 44, 0.15);
+  }
+  

@@ -1,0 +1,19 @@
+.login-container {
+    background: linear-gradient(to bottom, #CCCCBB , #CCCCBB );
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 18px 8px rgba(45, 46, 44, 0.3);
+    text-align: center;
+
+  }
+  
+  
+  input {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 22px;
+  }
+  
