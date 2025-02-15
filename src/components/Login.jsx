@@ -19,8 +19,8 @@ function Login() {
     <div className="login-container">
       <h1>Bienvenido</h1>
       <input
-        type="text"
-        placeholder="Ingresa tu nombre"
+        type="email"
+        placeholder="Ingresa tu correo"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />

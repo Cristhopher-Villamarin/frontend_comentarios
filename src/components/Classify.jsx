@@ -84,7 +84,7 @@ function Classify() {
       {/* Sección Media (Instrucciones) */}
       <section className="instructions-section">
         <p>
-          De acuerdo a tu criterio, selecciona el sentimiento que representacada comentario.
+          De acuerdo a tu criterio, selecciona el sentimiento que representa cada comentario.
         </p>
       </section>
 
