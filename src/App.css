@@ -88,3 +88,26 @@ input:focus {
   border-color: #9EC4BB;
   box-shadow: 0 2px 6px rgba(158, 196, 187, 0.4);
 }
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .main-title h1 {
+    font-size: 20px;
+    padding: 15px;
+  }
+
+  .instr-container h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title h1 {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .instr-container h2 {
+    font-size: 16px;
+  }
+}

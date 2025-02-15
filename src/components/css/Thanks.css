@@ -16,3 +16,16 @@
     margin: 0;
   }
   
+
+  /* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .thanks-container h1 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thanks-container h1 {
+    font-size: 18px;
+  }
+}
